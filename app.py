@@ -15,9 +15,9 @@ def teste():
 
 @app.route("/telegram", methods = ['POST'])
 def telegram_update():
-  update= request.json
+  update = request.json
   url_envio_mensagem = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage" #adicionar em Enviroment
-  chat_id = update["message"]["id"]
+  chat_id = update["message"]['chat']["id"]
   mensagem = {"chat_id": chat_id, "text":"mensagem <b>recebida</b>", "parse_mode":"HTML"}
   requests.post(url_envio_mensagem, data = mensagem)
   return "ok"
